@@ -15,7 +15,7 @@ const LoginScreen: React.FC = () => {
 
   async function doLogin() {
     if (formValues.email.trim() === '') {
-      flashError('Login obrigatório');
+      flashError('Usuário obrigatório');
       return;
     }
     if (formValues.password.trim() === '') {
