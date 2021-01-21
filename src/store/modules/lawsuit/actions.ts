@@ -12,7 +12,7 @@ export function lawsuitListSuccess(data: Case[]) {
     payload: { data },
   };
 }
-export function lawsuitSortOrder(order: []) {
+export function lawsuitSortOrder(order: Case[]) {
   return {
     type: LAWSUIT_TYPES.UPDATE_SORT_ORDER,
     payload: { order },

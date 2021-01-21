@@ -19,7 +19,16 @@ const RootNavigation = () => {
             component={LoginScreen}
             options={{ headerShown: false }}
           />
-          <Stack.Screen name="homeScreen" component={HomeScreen} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="homeScreen"
+            component={HomeScreen}
+            options={{
+              headerBackImage: () => null,
+              title: '',
+              headerTransparent: true,
+              headerBackTitleVisible: false,
+            }}
+          />
         </Stack.Navigator>
       </BaseNavigationContainer>
       <FlashMessage position="top" />
