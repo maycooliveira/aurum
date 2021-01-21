@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Case from '../../models/Case';
 
 export const TextTitle = styled.Text`
   font-size: 30px;
@@ -13,4 +14,10 @@ export const Container = styled.View`
   background-color: white;
   padding-left: 24px;
   padding-right: 24px;
+`;
+
+export const FlatListCases = styled.FlatList`
+  flex: 1;
+  padding-left: 32px;
+  padding-right: 32px;
 `;

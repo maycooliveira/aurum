@@ -13,4 +13,4 @@ export default interface Case {
   amount: number;
   historicals: Historical[];
   active: boolean;
-}
+};

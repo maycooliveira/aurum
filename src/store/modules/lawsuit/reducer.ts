@@ -49,7 +49,7 @@ const reducer: Reducer<LawSuitState, LawSuitActions> = (state = initialState, ac
         break;
 
       case LAWSUIT_TYPES.LIST_SUCCESS: {
-        draft.cases = action.data;
+        draft.cases = action.payload.data;
         draft.loading = false;
         break;
       }
