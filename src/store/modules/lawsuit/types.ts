@@ -1,0 +1,8 @@
+enum LAWSUIT_TYPES {
+  UPDATE_SORT_ORDER = '@lawsuit/UPDATE_SORT_ORDER',
+  LIST_FAILURE = '@lawsuit/LIST_FAILURE',
+  LIST_REQUEST = '@lawsuit/LIST_REQUEST',
+  LIST_SUCCESS = '@lawsuit/LIST_SUCCESS',
+}
+
+export default LAWSUIT_TYPES;
