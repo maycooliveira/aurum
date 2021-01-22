@@ -5,23 +5,23 @@ interface SpacerValue {
   value: number;
 }
 
-interface ContainerPaddingHorizontal {
-  padding: number;
-}
-
 export const TextTitle = styled.Text`
   font-size: 14px;
   color: #455a64;
   font-weight: 700;
 `;
 
-export const Container = styled.TouchableOpacity<ContainerPaddingHorizontal>`
-  padding-horizontal: ${(prosp) => prosp.padding};
+export const Container = styled.TouchableOpacity`
   margin-top: 10px;
+`;
+
+export const ViewInfo = styled.View`
+  padding-horizontal: 22px;
 `;
 
 export const TextSubTitle = styled.Text`
   font-size: 12px;
+  margin-right: 10px;
   color: ${colors.black_30};
 `;
 

@@ -5,8 +5,6 @@ interface Props {
   title: string;
   color: string;
   loading: boolean;
-  position?: string;
-  bottom?: number;
   onPress: () => void;
 }
 

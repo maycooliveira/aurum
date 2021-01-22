@@ -10,7 +10,6 @@ import { ListRenderItem } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { SearchBar } from 'react-native-elements';
 import { Spacer } from '../../components/RowCases/styles';
-import BottomNavigation from '../../components/BottomNavigation';
 
 let dataHolder: Case[] = [];
 
@@ -32,11 +31,22 @@ const HomeScreen: React.FC = () => {
   }, [lawsuit]);
 
   const renderItem: ListRenderItem<Case> = ({ item }) => {
-    return <RowCases item={item} />;
+    return (
+      <RowCases
+        item={item}
+        onPress={() => {
+          goDetail(item);
+        }}
+      />
+    );
   };
 
   const renderFooter = () => {
     return <Spacer value={20} />;
+  };
+
+  const goDetail = (item: Case) => {
+    navigation.navigate('caseDetail', { item: item });
   };
 
   const searchFilterFunction = (text: string) => {

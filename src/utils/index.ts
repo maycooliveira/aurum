@@ -35,4 +35,15 @@ const showAlert = (msg: string) => {
   Alert.alert(APP.NAME, msg);
 };
 
-export { flashError, flashSuccess, flashInfo, showAlert, delay };
+const formatMoney = (n: number) => {
+  if (n == null || n === 0) {
+    return 'R$0,00';
+  }
+  return `R$ ${n
+    .toFixed(2)
+
+    .replace('.', ',')
+    .replace(/(\d)(?=(\d{3})+\,)/g, '$1.')}`;
+};
+
+export { flashError, flashSuccess, flashInfo, showAlert, delay, formatMoney };
