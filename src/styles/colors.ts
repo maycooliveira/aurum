@@ -4,6 +4,8 @@ const colors = {
   gray_20: 'rgba(189, 189, 189, 0.2)',
   black_30: 'rgba(0,0,0,0.3)',
   black: '#000000',
+  slate: '#445963',
+  white: '#ffffff',
 };
 
 export default colors;

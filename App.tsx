@@ -7,6 +7,8 @@ import './configs/ReactotronConfig';
 import HomeScreen from './src/screens/HomeScreen';
 import store from './src/store';
 import FlashMessage from 'react-native-flash-message';
+import CoreScreen from './src/screens/CoreScreen';
+import ProfileScreen from './src/screens/ProfileScreen';
 const Stack = createStackNavigator();
 
 const RootNavigation = () => {
@@ -20,8 +22,18 @@ const RootNavigation = () => {
             options={{ headerShown: false }}
           />
           <Stack.Screen
-            name="homeScreen"
-            component={HomeScreen}
+            name="coreScreen"
+            component={CoreScreen}
+            options={{
+              headerBackImage: () => null,
+              title: '',
+              headerTransparent: true,
+              headerBackTitleVisible: false,
+            }}
+          />
+          <Stack.Screen
+            name="profileScreen"
+            component={ProfileScreen}
             options={{
               headerBackImage: () => null,
               title: '',

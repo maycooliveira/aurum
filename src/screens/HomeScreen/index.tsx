@@ -1,4 +1,4 @@
-import { TextTitle, Container, FlatListCases } from './styles';
+import { Container, FlatListCases } from './styles';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -7,14 +7,16 @@ import { getStatusBarHeight } from 'react-native-iphone-x-helper';
 import Case from '../../models/Case';
 import RowCases from '../../components/RowCases';
 import { ListRenderItem } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import { SearchBar } from 'react-native-elements';
-import { Separator, Spacer } from '../../components/RowCases/styles';
-import colors from '../../styles/colors';
+import { Spacer } from '../../components/RowCases/styles';
+import BottomNavigation from '../../components/BottomNavigation';
 
 let dataHolder: Case[] = [];
 
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
   const [search, setSearch] = useState('');
   const searchRef = useRef(null);
   const [data, setData] = useState<Case[]>([]);

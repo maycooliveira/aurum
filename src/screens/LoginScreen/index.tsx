@@ -23,7 +23,7 @@ const LoginScreen: React.FC = () => {
       return;
     }
     await dispatch(updateUser({ login: formValues.email }));
-    navigation.navigate('homeScreen');
+    navigation.navigate('coreScreen');
   }
 
   function change(type: string, text: string) {
