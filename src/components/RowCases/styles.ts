@@ -20,13 +20,14 @@ export const ViewInfo = styled.View`
 `;
 
 export const TextSubTitle = styled.Text`
-  font-size: 12px;
+  font-size: 11px;
   margin-right: 10px;
-  color: ${colors.black_30};
+  color: ${colors.black_60};
 `;
 
 export const TextInfo = styled.Text`
   font-size: 14px;
+  font-weight: 600;
   color: ${colors.black};
 `;
 

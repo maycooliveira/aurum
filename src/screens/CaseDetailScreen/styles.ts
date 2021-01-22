@@ -66,10 +66,25 @@ export const LabelInfo = styled.Text`
   font-weight: 600;
 `;
 
+export const EmptyList = styled.Text`
+  font-size: 16px;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  align-self: center;
+  text-align: center;
+  color: ${colors.gray_70};
+`;
+
 export const ViewRow = styled.View`
   flex-direction: row;
 `;
 
 export const FlatListHistorical = styled.FlatList`
   flex: 1;
+`;
+
+export const LabelOrderBy = styled.Text`
+  font-size: 13px;
+  color: ${colors.slate};
+  margin-right: 10px;
 `;

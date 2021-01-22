@@ -14,6 +14,7 @@ import {
   AscDescButton,
   ViewRow,
   FlatListHistorical,
+  LabelOrderBy,
 } from './styles';
 import Icon from 'react-native-vector-icons/Feather';
 import IconAwesome from 'react-native-vector-icons/FontAwesome5';
@@ -96,7 +97,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
         <LabelInfo>HISTÓRICO</LabelInfo>
         <ViewRow>
           <OrderByButton>
-            <TextSubTitle>Ordenado por</TextSubTitle>
+            <LabelOrderBy>Ordenado por</LabelOrderBy>
             <IconAwesome name={'caret-down'} size={16} color={colors.slate} />
           </OrderByButton>
           <AscDescButton>
@@ -104,6 +105,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
           </AscDescButton>
         </ViewRow>
       </ContainerHistoricalFilter>
+      <Spacer value={20} />
       <FlatListHistorical data={historical} renderItem={renderItem} />
     </Container>
   );
