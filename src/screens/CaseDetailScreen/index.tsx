@@ -16,6 +16,7 @@ import {
   FlatListHistorical,
   LabelOrderBy,
 } from './styles';
+import DocumentPicker from 'react-native-document-picker';
 import Icon from 'react-native-vector-icons/Feather';
 import IconAwesome from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
@@ -43,7 +44,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <AttachButton>
+        <AttachButton onPress={getArchive}>
           <Icon name={'paperclip'} size={20} color={colors.base} />
         </AttachButton>
       ),
@@ -52,6 +53,26 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
 
   const renderItem: ListRenderItem<Historical> = ({ item }) => {
     return <RowHistorical item={item} />;
+  };
+
+  const getArchive = async () => {
+    try {
+      const res = await DocumentPicker.pick({
+        type: [DocumentPicker.types.images],
+      });
+      console.log(
+        res.uri,
+        res.type, // mime type
+        res.name,
+        res.size,
+      );
+    } catch (err) {
+      if (DocumentPicker.isCancel(err)) {
+        // User cancelled the picker, exit any dialogs or menus and move on
+      } else {
+        throw err;
+      }
+    }
   };
 
   return (
