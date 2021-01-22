@@ -46,4 +46,27 @@ const formatMoney = (n: number) => {
     .replace(/(\d)(?=(\d{3})+\,)/g, '$1.')}`;
 };
 
-export { flashError, flashSuccess, flashInfo, showAlert, delay, formatMoney };
+const confirmDenyMessage = (
+  msg: string,
+  action: () => void,
+  cancelar: () => void,
+  confirmTitle: string,
+  cancelTitle: string,
+) => {
+  Alert.alert(APP.NAME, msg, [
+    {
+      text: cancelTitle ? cancelTitle : 'Cancelar',
+      onPress: () => {
+        cancelar && cancelar();
+      },
+    },
+    {
+      text: confirmTitle ? confirmTitle : 'OK',
+      onPress: () => {
+        action();
+      },
+    },
+  ]);
+};
+
+export { flashError, flashSuccess, flashInfo, showAlert, delay, formatMoney, confirmDenyMessage };

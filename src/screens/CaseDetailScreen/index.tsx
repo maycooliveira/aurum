@@ -16,7 +16,7 @@ import {
   FlatListHistorical,
   LabelOrderBy,
 } from './styles';
-import DocumentPicker from 'react-native-document-picker';
+import * as DocumentPicker from 'expo-document-picker';
 import Icon from 'react-native-vector-icons/Feather';
 import IconAwesome from 'react-native-vector-icons/FontAwesome5';
 import { useNavigation } from '@react-navigation/native';
@@ -24,9 +24,11 @@ import Case from '../../models/Case';
 import colors from '../../styles/colors';
 import { ListRenderItem } from 'react-native';
 import { Separator, Spacer, TextInfo, TextSubTitle } from '../../components/RowCases/styles';
-import { formatMoney } from '../../utils';
+import { confirmDenyMessage, formatMoney } from '../../utils';
 import RowHistorical from '../../components/RowHistorical';
 import Historical from '../../models/Historical';
+import { LoadingAction } from '../../components/BaseButton/styles';
+import { doc } from 'prettier';
 
 interface Props {
   data: Case;
@@ -35,16 +37,36 @@ interface Props {
 const CaseDetailScreen: React.FC<Props> = (props) => {
   const { item } = props.route.params;
   const [historical, setHistorical] = useState([]);
+  const [document, setDocument] = useState({});
+  const [isDocumentSelected, setIsDocumentSelected] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigation = useNavigation();
 
   useEffect(() => {
     setHistorical(item.historicals);
   }, [item]);
 
+  // useEffect(() => {
+  //   setIsDocumentSelected(document.type === 'success');
+  // }, [document]);
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
-        <AttachButton onPress={getArchive}>
+        <AttachButton
+          onPress={() => {
+            confirmDenyMessage(
+              'Escolha o tipo do anexo',
+              () => {
+                getArchive('application/pdf');
+              },
+              () => {
+                getArchive('image/*');
+              },
+              'Pdf',
+              'Imagem',
+            );
+          }}>
           <Icon name={'paperclip'} size={20} color={colors.base} />
         </AttachButton>
       ),
@@ -55,23 +77,18 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
     return <RowHistorical item={item} />;
   };
 
-  const getArchive = async () => {
+  const getArchive = async (mime: string) => {
+    setLoading(true);
     try {
-      const res = await DocumentPicker.pick({
-        type: [DocumentPicker.types.images],
-      });
-      console.log(
-        res.uri,
-        res.type, // mime type
-        res.name,
-        res.size,
-      );
-    } catch (err) {
-      if (DocumentPicker.isCancel(err)) {
-        // User cancelled the picker, exit any dialogs or menus and move on
-      } else {
-        throw err;
+      let result = await DocumentPicker.getDocumentAsync({ type: mime });
+      if (result.uri) {
+        setDocument(result);
       }
+
+      setLoading(false);
+    } catch (err) {
+      setLoading(false);
+      console.log('error', err);
     }
   };
 
@@ -102,14 +119,17 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
         <Spacer value={8} />
         <TextSubTitle>Anexo</TextSubTitle>
         <Spacer value={4} />
-        <ContainerAttachment>
-          <ViewAttachment>
-            <TextAttachment>Parte.pdf</TextAttachment>
-          </ViewAttachment>
-          <DeleteButton>
-            <Icon name={'x'} size={20} color={colors.slate} />
-          </DeleteButton>
-        </ContainerAttachment>
+        {document.uri && (
+          <ContainerAttachment>
+            <ViewAttachment>
+              <TextAttachment>{document.name}</TextAttachment>
+            </ViewAttachment>
+            <DeleteButton onPress={() => setDocument({})}>
+              <Icon name={'x'} size={20} color={colors.slate} />
+            </DeleteButton>
+          </ContainerAttachment>
+        )}
+        {!document.uri && <TextInfo>{'-'}</TextInfo>}
       </ContainerCase>
       <Spacer value={20} />
       <Separator />
