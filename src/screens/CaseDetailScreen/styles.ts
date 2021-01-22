@@ -12,6 +12,7 @@ export const ContainerCase = styled.View`
 
 export const AttachButton = styled.TouchableOpacity`
   margin-right: 10;
+  padding: 6px;
 `;
 
 export const DeleteButton = styled.TouchableOpacity`
@@ -29,6 +30,7 @@ export const CaseTitle = styled.Text`
 export const TextAttachment = styled.Text`
   font-size: 11px;
   font-weight: 500;
+  max-width: 150;
   color: ${colors.white};
 `;
 
@@ -38,7 +40,7 @@ export const ContainerAttachment = styled.View`
 
 export const ViewAttachment = styled.View`
   align-items: center;
-  height: 24px;
+  height: 26px;
   padding-horizontal: 8px;
   border-radius: 4px;
   justify-content: center;

@@ -27,8 +27,6 @@ import { Separator, Spacer, TextInfo, TextSubTitle } from '../../components/RowC
 import { confirmDenyMessage, formatMoney } from '../../utils';
 import RowHistorical from '../../components/RowHistorical';
 import Historical from '../../models/Historical';
-import { LoadingAction } from '../../components/BaseButton/styles';
-import { doc } from 'prettier';
 
 interface Props {
   data: Case;
@@ -46,10 +44,6 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
     setHistorical(item.historicals);
   }, [item]);
 
-  // useEffect(() => {
-  //   setIsDocumentSelected(document.type === 'success');
-  // }, [document]);
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -58,7 +52,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
             confirmDenyMessage(
               'Escolha o tipo do anexo',
               () => {
-                getArchive('application/pdf');
+                getArchive('*/*');
               },
               () => {
                 getArchive('image/*');
@@ -122,7 +116,9 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
         {document.uri && (
           <ContainerAttachment>
             <ViewAttachment>
-              <TextAttachment>{document.name}</TextAttachment>
+              <TextAttachment numberOfLines={1} ellipsizeMode="middle">
+                {document.name}
+              </TextAttachment>
             </ViewAttachment>
             <DeleteButton onPress={() => setDocument({})}>
               <Icon name={'x'} size={20} color={colors.slate} />
