@@ -70,7 +70,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
             confirmDenyMessage(
               'Escolha o tipo do anexo',
               () => {
-                getArchive('*/*');
+                getArchive('application/pdf');
               },
               () => {
                 getArchive('image/*');
