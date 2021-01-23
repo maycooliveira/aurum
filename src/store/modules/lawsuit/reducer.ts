@@ -40,6 +40,9 @@ const reducer: Reducer<LawSuitState, LawSuitActions> = (state = initialState, ac
       case LAWSUIT_TYPES.UPDATE_SORT_ORDER:
         draft.sortOrder = action.sortOrder;
         break;
+      case LAWSUIT_TYPES.UPDATE_SORT_FILTER:
+        draft.sortFilter = action.sortFilter;
+        break;
       case LAWSUIT_TYPES.LIST_REQUEST:
         draft.loading = true;
         break;

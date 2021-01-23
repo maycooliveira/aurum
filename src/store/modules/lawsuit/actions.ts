@@ -12,10 +12,17 @@ export function lawsuitListSuccess(data: Case[]) {
     payload: { data },
   };
 }
-export function lawsuitSortOrder(order: Case[]) {
+export function lawsuitSortOrder(order: number) {
   return {
     type: LAWSUIT_TYPES.UPDATE_SORT_ORDER,
-    payload: { order },
+    sortOrder: order,
+  };
+}
+
+export function lawsuitSortFilter(filter: number) {
+  return {
+    type: LAWSUIT_TYPES.UPDATE_SORT_FILTER,
+    sortFilter: filter,
   };
 }
 export function lawsuitListFailure(error: string) {

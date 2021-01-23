@@ -55,7 +55,7 @@ export const ContainerHistoricalFilter = styled.View`
 
 export const OrderByButton = styled.TouchableOpacity`
   flex-direction: row;
-  margin-right: 30px;
+  margin-right: 15px;
   align-items: center;
 `;
 

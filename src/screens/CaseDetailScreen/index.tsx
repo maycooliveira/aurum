@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, MutableRefObject } from 'react';
 import {
   Container,
   AttachButton,
@@ -27,6 +27,11 @@ import { Separator, Spacer, TextInfo, TextSubTitle } from '../../components/RowC
 import { confirmDenyMessage, formatMoney } from '../../utils';
 import RowHistorical from '../../components/RowHistorical';
 import Historical from '../../models/Historical';
+import SortSheet from '../../components/SortSheet';
+import RBSheet from 'react-native-raw-bottom-sheet';
+import { useSelector } from 'react-redux';
+import { SORT_FILTER, SORT_ORDER } from '../../store/modules/lawsuit/reducer';
+import { setHistoricalByDate, setHistoricalByDescription } from '../../tests/sort';
 
 interface Props {
   data: Case;
@@ -36,13 +41,28 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
   const { item } = props.route.params;
   const [historical, setHistorical] = useState([]);
   const [document, setDocument] = useState({});
-  const [isDocumentSelected, setIsDocumentSelected] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const refRBSheet = useRef<RBSheet>(null);
   const navigation = useNavigation();
+  const { lawsuit } = useSelector((state) => state);
 
   useEffect(() => {
     setHistorical(item.historicals);
   }, [item]);
+
+  useEffect(() => {
+    let dataAux;
+    if (lawsuit.sortFilter === SORT_FILTER.BY_DATE) {
+      dataAux = setHistoricalByDate([...item.historicals]);
+    } else if (lawsuit.sortFilter === SORT_FILTER.BY_DECRIPTION) {
+      dataAux = setHistoricalByDescription([...item.historicals]);
+    }
+
+    if (lawsuit.sortOrder === SORT_ORDER.BY_DESC) {
+      dataAux = [...historical].reverse();
+    }
+
+    setHistorical(dataAux);
+  }, [lawsuit.sortOrder, lawsuit.sortFilter, item]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -52,7 +72,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
             confirmDenyMessage(
               'Escolha o tipo do anexo',
               () => {
-                getArchive('*/*');
+                getArchive('application/pdf');
               },
               () => {
                 getArchive('image/*');
@@ -72,16 +92,12 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
   };
 
   const getArchive = async (mime: string) => {
-    setLoading(true);
     try {
       let result = await DocumentPicker.getDocumentAsync({ type: mime });
       if (result.uri) {
         setDocument(result);
       }
-
-      setLoading(false);
     } catch (err) {
-      setLoading(false);
       console.log('error', err);
     }
   };
@@ -133,17 +149,28 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
       <ContainerHistoricalFilter>
         <LabelInfo>HISTÓRICO</LabelInfo>
         <ViewRow>
-          <OrderByButton>
-            <LabelOrderBy>Ordenado por</LabelOrderBy>
+          <OrderByButton onPress={() => refRBSheet.current?.open()}>
+            <LabelOrderBy>
+              {lawsuit.sortFilter === SORT_FILTER.BY_DATE
+                ? 'Ordernado por data'
+                : 'Ordenado por descrição'}
+            </LabelOrderBy>
             <IconAwesome name={'caret-down'} size={16} color={colors.slate} />
           </OrderByButton>
-          <AscDescButton>
-            <IconAwesome name={'sort-amount-down'} size={16} color={colors.slate} />
-          </AscDescButton>
+          <IconAwesome
+            name={lawsuit.sortOrder === SORT_ORDER.BY_ASC ? 'sort-amount-up' : 'sort-amount-down'}
+            size={16}
+            color={colors.slate}
+          />
         </ViewRow>
       </ContainerHistoricalFilter>
       <Spacer value={20} />
-      <FlatListHistorical data={historical} renderItem={renderItem} />
+      <FlatListHistorical
+        keyExtractor={(_, index) => `case${index + Math.random()}`}
+        data={historical}
+        renderItem={renderItem}
+      />
+      <SortSheet refInside={refRBSheet} />
     </Container>
   );
 };

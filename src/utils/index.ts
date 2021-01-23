@@ -2,7 +2,7 @@ import APP from '../../configs/app';
 import { Alert } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 
-const flashInfo = (message: string) => {
+const flashInfo = (message) => {
   showMessage({
     message: APP.NAME,
     icon: 'info',
@@ -13,7 +13,7 @@ const flashInfo = (message: string) => {
 
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const flashError = (message: string, title = APP.NAME) => {
+const flashError = (message, title = APP.NAME) => {
   showMessage({
     message: title,
     icon: 'danger',
@@ -22,7 +22,7 @@ const flashError = (message: string, title = APP.NAME) => {
   });
 };
 
-const flashSuccess = (message: string) => {
+const flashSuccess = (message) => {
   showMessage({
     message: APP.NAME,
     icon: 'success',
@@ -31,11 +31,11 @@ const flashSuccess = (message: string) => {
   });
 };
 
-const showAlert = (msg: string) => {
+const showAlert = (msg) => {
   Alert.alert(APP.NAME, msg);
 };
 
-const formatMoney = (n: number) => {
+const formatMoney = (n) => {
   if (n == null || n === 0) {
     return 'R$0,00';
   }
@@ -46,13 +46,7 @@ const formatMoney = (n: number) => {
     .replace(/(\d)(?=(\d{3})+\,)/g, '$1.')}`;
 };
 
-const confirmDenyMessage = (
-  msg: string,
-  action: () => void,
-  cancelar: () => void,
-  confirmTitle: string,
-  cancelTitle: string,
-) => {
+const confirmDenyMessage = (msg, action, cancelar, confirmTitle, cancelTitle) => {
   Alert.alert(APP.NAME, msg, [
     {
       text: cancelTitle ? cancelTitle : 'Cancelar',
