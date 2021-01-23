@@ -1,7 +1,7 @@
 {
-  "devToolsPort": 19086,
-  "expoServerPort": 19087,
-  "packagerPort": 19087,
+  "devToolsPort": 19088,
+  "expoServerPort": 19089,
+  "packagerPort": 19089,
   "expoServerNgrokUrl": "https://h2-vs2.anonymous.aurum2.exp.direct",
   "packagerNgrokUrl": "https://packager.h2-vs2.anonymous.aurum2.exp.direct",
   "ngrokPid": 39037
