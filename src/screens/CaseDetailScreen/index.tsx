@@ -56,11 +56,9 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
     } else if (lawsuit.sortFilter === SORT_FILTER.BY_DECRIPTION) {
       dataAux = setHistoricalByDescription([...item.historicals]);
     }
-
     if (lawsuit.sortOrder === SORT_ORDER.BY_DESC) {
       dataAux = [...historical].reverse();
     }
-
     setHistorical(dataAux);
   }, [lawsuit.sortOrder, lawsuit.sortFilter, item]);
 
@@ -72,7 +70,7 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
             confirmDenyMessage(
               'Escolha o tipo do anexo',
               () => {
-                getArchive('application/pdf');
+                getArchive('*/*');
               },
               () => {
                 getArchive('image/*');
