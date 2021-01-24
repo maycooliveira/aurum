@@ -1,4 +1,4 @@
-import { Container, FlatListCases } from './styles';
+import { Container, FlatListCases, Loading } from './styles';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
@@ -18,6 +18,7 @@ const HomeScreen: React.FC = () => {
   const navigation = useNavigation();
   const [search, setSearch] = useState('');
   const searchRef = useRef(null);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState<Case[]>([]);
   const { lawsuit } = useSelector((state) => state);
 
@@ -28,6 +29,8 @@ const HomeScreen: React.FC = () => {
   useEffect(() => {
     setData(lawsuit.cases);
     dataHolder = lawsuit.cases;
+    console.log('lawwuit', lawsuit);
+    setLoading(lawsuit.loading);
   }, [lawsuit]);
 
   const renderItem: ListRenderItem<Case> = ({ item }) => {
@@ -42,7 +45,7 @@ const HomeScreen: React.FC = () => {
   };
 
   const renderFooter = () => {
-    return <Spacer value={20} />;
+    return <Loading />;
   };
 
   const goDetail = (item: Case) => {
@@ -83,7 +86,11 @@ const HomeScreen: React.FC = () => {
         onChangeText={(text) => searchFilterFunction(text)}
         value={search}
       />
-      <FlatListCases data={data} renderItem={renderItem} ListFooterComponent={renderFooter} />
+      <FlatListCases
+        data={data}
+        renderItem={renderItem}
+        ListFooterComponent={loading ? renderFooter : null}
+      />
     </Container>
   );
 };

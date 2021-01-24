@@ -9,3 +9,8 @@ export const Container = styled.View`
 export const FlatListCases = styled.FlatList`
   flex: 1;
 `;
+
+export const Loading = styled.ActivityIndicator`
+  margin-top: 10px;
+  margin-bottom: 10px;
+`;
