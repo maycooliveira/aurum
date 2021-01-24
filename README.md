@@ -8,5 +8,6 @@
 <ul>
   <li>Clone repo: git clone https://github.com/maycooliveira/aurum.git</li>
   <li>Install dependencies: yarn or npm install</li>
+  <li>expo start</li>
 <ul>
  
