@@ -15,12 +15,10 @@
   <img alt="Aurum" title="#screen" width="250px" src="prints/print5.png" />
  </div>
 
-<h1>Instalation</h1>
+## Installation
 
-<ul>
-  <li>Clone repo: git clone https://github.com/maycooliveira/aurum.git</li>
-  <li>Install dependencies: yarn or npm install</li>
-<ul>
+- Clone repo: git clone https://github.com/maycooliveira/aurum.git
+- Install dependencies: `yarn` or `npm install
   
 ```sh
 expo start
