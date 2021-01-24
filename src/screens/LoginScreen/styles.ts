@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 import colors from '../../styles/colors';
 
+export const StatusBar = styled.StatusBar``;
+
 export const TextTitle = styled.Text`
   font-size: 30px;
   color: #455a64;

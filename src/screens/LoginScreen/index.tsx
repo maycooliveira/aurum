@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import BaseButton from '../../components/BaseButton';
-import { Container, Input, TextTitle } from './styles';
+import { Container, Input, TextTitle, StatusBar } from './styles';
 import colors from '../../styles/colors';
 import { useNavigation } from '@react-navigation/native';
 import { flashError } from '../../utils';
@@ -32,6 +32,7 @@ const LoginScreen: React.FC = () => {
 
   return (
     <Container>
+      <StatusBar barStyle="dark-content" />
       <TextTitle>Login</TextTitle>
       <Input
         placeholder="Usuário"
