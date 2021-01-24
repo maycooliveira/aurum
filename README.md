@@ -24,12 +24,12 @@
 expo start
 ```
   
- ## Release History
+## Release History
 
 * 0.0.1
     * Work in progress
     
-    ## Contributing
+## Contributing
 
 1. Fork it (<https://github.com/maycooliveira/aurum>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
