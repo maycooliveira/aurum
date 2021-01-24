@@ -62,8 +62,6 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
       dataAux = setHistoricalByDescription([...item.historicals]);
     }
 
-    dataAux = setHistoricalByOrder([...item.historicals]);
-
     if (lawsuit.sortOrder === SORT_ORDER.BY_DESC) {
       dataAux = dataAux.reverse();
     }
