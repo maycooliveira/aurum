@@ -29,6 +29,12 @@ expo start
 * 0.0.1
     * Work in progress
     
+## Meta
+
+Mayco – maycoasamoda@hotmail.com
+
+Distributed under the MIT license. See ``LICENSE`` for more information.
+    
 ## Contributing
 
 1. Fork it (<https://github.com/maycooliveira/aurum>)
