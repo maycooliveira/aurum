@@ -1,7 +1,9 @@
 
-<h1>
-  <a href="https://pt-br.reactjs.org/">🔗 Aurum - React Native</a>
-</h1>
+# Pokedex - React Native
+> [WIP] Aurmtest build in React Native, redux, redux-saga and redux-persist.
+
+> [WIP] Aurmtest desenvolvida em React Native, redux, redux-saga e redux-persist.
+
 
 <div align="center" styles="flex-direction: row;">
   <img alt="Aurum" title="#screen" src="prints/print1.png" />
