@@ -31,7 +31,12 @@ import SortSheet from '../../components/SortSheet';
 import RBSheet from 'react-native-raw-bottom-sheet';
 import { useSelector } from 'react-redux';
 import { SORT_FILTER, SORT_ORDER } from '../../store/modules/lawsuit/reducer';
-import { setHistoricalByDate, setHistoricalByDescription } from '../../tests/sort';
+import {
+  setHistoricalByDate,
+  setHistoricalByDescription,
+  setHistoricalByOrder,
+} from '../../tests/sort';
+import { lawsuitSortOrder } from '../../store/modules/lawsuit/actions';
 
 interface Props {
   data: Case;
@@ -39,11 +44,11 @@ interface Props {
 
 const CaseDetailScreen: React.FC<Props> = (props) => {
   const { item } = props.route.params;
+  const { lawsuit } = useSelector((state) => state);
   const [historical, setHistorical] = useState([]);
   const [document, setDocument] = useState({});
   const refRBSheet = useRef<RBSheet>(null);
   const navigation = useNavigation();
-  const { lawsuit } = useSelector((state) => state);
 
   useEffect(() => {
     setHistorical(item.historicals);
@@ -56,9 +61,13 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
     } else if (lawsuit.sortFilter === SORT_FILTER.BY_DECRIPTION) {
       dataAux = setHistoricalByDescription([...item.historicals]);
     }
+
+    dataAux = setHistoricalByOrder([...item.historicals]);
+
     if (lawsuit.sortOrder === SORT_ORDER.BY_DESC) {
-      dataAux = [...historical].reverse();
+      dataAux = dataAux.reverse();
     }
+
     setHistorical(dataAux);
   }, [lawsuit.sortOrder, lawsuit.sortFilter, item]);
 
@@ -112,10 +121,10 @@ const CaseDetailScreen: React.FC<Props> = (props) => {
         <Spacer value={8} />
         <TextSubTitle>Cliente</TextSubTitle>
         <Spacer value={4} />
-        <TextInfo>{item.customers[0].name}</TextInfo>
+        <TextInfo>{item.customers[0]?.name || ' - '}</TextInfo>
         <Spacer value={8} />
         <TextSubTitle>Parte</TextSubTitle>
-        <TextInfo>{item.customers[0].roleName}</TextInfo>
+        <TextInfo>{item.customers[0]?.roleName || ' - '}</TextInfo>
         <Spacer value={8} />
         <TextSubTitle>Fórum</TextSubTitle>
         <Spacer value={4} />

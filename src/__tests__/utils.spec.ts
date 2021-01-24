@@ -1,4 +1,8 @@
-import { setHistoricalByDate, setHistoricalByDescription } from '../tests/sort';
+import {
+  setHistoricalByDate,
+  setHistoricalByDescription,
+  setHistoricalByOrder,
+} from '../tests/sort';
 
 const mock = [
   {
@@ -37,5 +41,9 @@ describe('Sort function', () => {
 
   test('It shoud order this list by description', () => {
     expect(setHistoricalByDescription(mock)).toEqual(output);
+  });
+
+  test('It shoud order this list by  Asc', () => {
+    expect(setHistoricalByOrder(mock)).toEqual(output);
   });
 });

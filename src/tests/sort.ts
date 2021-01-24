@@ -26,4 +26,21 @@ const setHistoricalByDescription = (data) => {
   return data;
 };
 
-export { setHistoricalByDate, setHistoricalByDescription };
+const setHistoricalByOrder = (data) => {
+  data.sort((a, b) => {
+    const descriptionA = a.description;
+    const descriptionB = b.description;
+
+    if (descriptionA < descriptionB) {
+      return -1;
+    } else if (descriptionA > descriptionB) {
+      return 1;
+    } else {
+      return 0;
+    }
+  });
+
+  return data;
+};
+
+export { setHistoricalByDate, setHistoricalByDescription, setHistoricalByOrder };
