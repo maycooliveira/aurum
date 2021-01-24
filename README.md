@@ -1,8 +1,8 @@
 
 # Pokedex - React Native
-> [WIP] Aurmtest build in React Native, redux, redux-saga and redux-persist.
+> [WIP] Aurumtest build in React Native, redux, redux-saga and redux-persist.
 
-> [WIP] Aurmtest desenvolvida em React Native, redux, redux-saga e redux-persist.
+> [WIP] Aurumtest desenvolvida em React Native, redux, redux-saga e redux-persist.
 
 
 <div align="center" styles="flex-direction: row;">
