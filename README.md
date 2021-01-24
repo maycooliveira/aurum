@@ -18,7 +18,7 @@
 ## Installation
 
 - Clone repo: git clone https://github.com/maycooliveira/aurum.git
-- Install dependencies: `yarn` or `npm install
+- Install dependencies: `yarn` or `npm install`
   
 ```sh
 expo start
