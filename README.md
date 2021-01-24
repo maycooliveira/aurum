@@ -1,7 +1,7 @@
 
 # Aurum - React Native
 > [WIP] Aurumtest build in React Native, redux, redux-saga and redux-persist.
-
+//
 > [WIP] Aurumtest desenvolvida em React Native, redux, redux-saga e redux-persist.
 
 
