@@ -26,6 +26,7 @@ expo start
 
 ## Usage example
 Scan to open
+
 Install Expo client on device.
 With an Android and iOS phone, you can scan this QR code with your Expo mobile app to load this project immediately.
 
